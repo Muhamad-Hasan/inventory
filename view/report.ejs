@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Monthly Report
+    </title>
+    <style>
+        #start {
+            background-color: gray;
+            display: flex;
+            justify-content: space-between;
+            padding-top: 2pt;
+            padding-bottom: 2pt;
+
+        }
+
+        .headerText {
+            font-size: 15pt;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        #fulltable{
+            width:100%
+        }
+        .left{
+            text-align: center;
+        }
+        .padding{
+            padding : 10px
+        }
+        .nopadding{
+            padding : 0px
+        }
+        #tablediv{
+             margin-top: 15pt;
+        }
+
+    </style>
+   
+</head>
+
+<body>
+
+    <div id="start">
+        <span class="headerText">Shahid and Sons , karachi</span>
+        <span class="headerText">Month , June 2019</span>
+
+    </div>
+    <div id="tablediv">
+        <table id="fulltable">
+            <tr>
+                <th class="padding" rowspan="3">
+                    Date
+                </th>
+                <th colspan="2">
+                    CBC
+                </th>
+                <th colspan="3">
+                    Face Control
+                </th>
+                <th colspan="2">
+                    White Total
+                </th>
+                <th colspan="2">
+                    Current Soap
+                </th>
+                <th colspan="3">
+                    Fairness
+                </th>
+                <th rowspan="2">
+                    Cold <br>Cream
+                </th>
+                <th colspan="3">
+                    Face Wash
+                </th>
+                <th colspan="2">
+                    HRC
+                </th>
+                <th colspan="2">
+                    BB Cream
+                </th>
+                <th class="nopadding" rowspan="2">
+                    Shampoo
+                </th>
+                <th class="nopadding" rowspan="2">
+                    Conditioner
+                </th>
+                <th class="nopadding" rowspan="2">
+                    C.Men
+                </th>
+                <th class="nopadding" rowspan="2">
+                    Lotion
+                </th>
+                <th class="padding" rowspan="3">
+                    Total
+                </th>
+
+
+            </tr>
+            <tr>
+                <td class="left">
+                    S
+                </td>
+                <td class="left">
+                    L
+                </td>
+                <td class="left">
+                    S
+                </td>
+                <td class="left">
+                    L
+                </td>
+                <td class="left">
+                    New
+                </td>
+                <td class="left">
+                    Cream
+                </td>
+                <td class="left">
+                    Soap
+                </td>
+                <td class="left">
+                    70g
+                </td>
+                <td class="left">
+                    110g
+                </td>
+               
+                <td class="left">
+                    25g
+                </td> <td class="left">
+                    50g
+                </td>
+                <td class="left">
+                    80g
+                </td>
+                <td class="left">
+                    C.
+                </td> <td class="left">
+                    FC
+                </td>
+                <td class="left">
+                    MEC.
+                </td>
+                <td class="left">
+                    S
+                </td>
+                <td class="left">
+                    L
+                </td> <td class="left">
+                    S
+                </td>
+                <td class="left">
+                    L
+                </td>
+                
+                
+            </tr>
+            <tr>
+                <td class="left">
+                    S
+                </td>
+                <td class="left">
+                    L
+                </td>
+                <td class="left">
+                    S
+                </td>
+                <td class="left">
+                    L
+                </td>
+                <td class="left">
+                    New
+                </td>
+                <td class="left">
+                    Cream
+                </td>
+                <td class="left">
+                    Soap
+                </td>
+                <td class="left">
+                    70g
+                </td>
+                <td class="left">
+                    110g
+                </td>
+               
+                <td class="left">
+                    25g
+                </td> <td class="left">
+                    50g
+                </td>
+                <td class="left">
+                    80g
+                </td>
+                <td class="left">
+                    C.
+                </td> <td class="left">
+                    FC
+                </td>
+                <td class="left">
+                    MEC.
+                </td>
+                <td class="left">
+                    S
+                </td>
+                <td class="left">
+                    L
+                </td> <td class="left">
+                    S
+                </td>
+                <td class="left">
+                    L
+                </td>
+                <td class="left">
+                    1536
+                </td> <td class="left">
+                    1536
+                </td> <td class="left">
+                    1536
+                </td> <td class="left">
+                    1536
+                </td>
+                
+                
+            </tr>
+            <tr>
+                <td colspan="26" style="padding:10px;"></td>
+            </tr>
+<% ejs_data.invoices.forEach(text => {%>
+                <!-- <% text.products.map((p , index)=>{ %> -->
+                <tr>
+                    <td>
+                        <%= text.date %>  
+                    </td>
+                </tr>
+                <!-- <tr>
+                    <td class="left">
+                        <%= `${text.toString()}` %>
+                    </td>
+                    <td class="left">
+                        <%= ejs_data.array.filter(f => f.product_id == "cbcs" )[0]?  ejs_data.array.filter(f => f.product_id == "cbcs" )[0].ctns : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= ejs_data.array.filter(f => f.product_id == "cbcl" )[0]?  ejs_data.array.filter(f => f.product_id == "cbcl" )[0].ctns : "-"  %>
+                    
+                    </td>
+                    <td class="left">
+                        <%= ejs_data.array.filter(f => f.product_id == "fcs" )[0]?  ejs_data.array.filter(f => f.product_id == "fcs" )[0].ctns : "-"  %>
+                    
+                    </td>
+                    <td class="left">
+                        <%= ejs_data.array.filter(f => f.product_id == "fcl" )[0]?  ejs_data.array.filter(f => f.product_id == "fcl" )[0].ctns : "-"  %>
+                    
+                    </td>
+                    <td class="left">
+                        <%= ejs_data.array.filter(f => f.product_id == "fcn" )[0]?  ejs_data.array.filter(f => f.product_id == "fcn" )[0].ctns : "-"  %>
+                    
+                    </td>
+                    <td class="left">
+                        <%= ejs_data.array.filter(f => f.product_id == "wtc" )[0]?  ejs_data.array.filter(f => f.product_id == "wtc" )[0].ctns : "-"  %>
+                    
+                    </td>
+                    <td class="left">
+                        <%= ejs_data.array.filter(f => f.product_id == "wts" )[0]?  ejs_data.array.filter(f => f.product_id == "wts" )[0].ctns : "-"  %>
+                    
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "cs70"  ? p.ctns : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "cs110"  ? p.ctns : "-"  %>
+                    </td>
+                   
+                    <td class="left">
+                        <%= p.product_id == "f25"  ? p.ctns : "-"  %>
+                    </td> <td class="left">
+                        <%= p.product_id == "f50"  ? p.ctns : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "f80"  ? p.ctns : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "cc"  ? p.ctns : "-"  %>
+                    </td> <td class="left">
+                        <%= p.product_id == "fwc"  ? p.ctns : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "fwfc"  ? p.ctns : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "fwmec"  ? p.ctns : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "hrcs"  ? p.ctns : "-"  %>
+                    </td> <td class="left">
+                        <%= p.product_id == "hrcl"  ? p.ctns : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "bbcs"  ? p.ctns : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "bbcl"  ? p.ctns : "-"  %>
+                    </td> <td class="left">
+                        <%= p.product_id == "s"  ? p.ctns : "-"  %>
+                    </td> <td class="left">
+                        <%= p.product_id == "c"  ? p.ctns : "-"  %>
+                    </td> <td class="left">
+                        <%= p.product_id == "cm"  ? p.ctns : "-"  %>
+                    </td>
+                </td> <td class="left">
+                    <%= p.product_id == "l"  ? p.ctns : "-"  %>
+                </td>
+                <td rowspan="2" class="left">
+                    <%= text.grand_total %>
+                </td>
+                    
+                    
+                </tr> -->
+                <!-- <tr>
+                    
+                    <td class="left">
+                        <%= p.product_id == "cbcs"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "cbcl" ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "fcs"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "fcl"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "fcn" ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "wtc"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "wts"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "cs70"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "cs110"  ? p.amount : "-"  %>
+                    </td>
+                   
+                    <td class="left">
+                        <%= p.product_id == "f25"  ? p.amount : "-"  %>
+                    </td> <td class="left">
+                        <%= p.product_id == "f50"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "f80"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "cc"  ? p.amount : "-"  %>
+                    </td> <td class="left">
+                        <%= p.product_id == "fwc"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "fwfc"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "fwmec"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "hrcs"  ? p.amount : "-"  %>
+                    </td> <td class="left">
+                        <%= p.product_id == "hrcl"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "bbcs"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "bbcl"  ? p.amount : "-"  %>
+                    </td> <td class="left">
+                        <%= p.product_id == "s"  ? p.amount : "-"  %>
+                    </td> <td class="left">
+                        <%= p.product_id == "c"  ? p.amount : "-"  %>
+                    </td> <td class="left">
+                        <%= p.product_id == "cm"  ? p.amount : "-"  %>
+                    </td>
+                    <td class="left">
+                        <%= p.product_id == "l"  ? p.amount : "-"  %>
+                    </td>
+                    
+                    
+                </tr> -->
+                
+                <!-- <% }) %> -->
+            <% }) %> 
+         
+        </table>
+    </div>
+    
+</body>
+
+</html>

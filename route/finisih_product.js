@@ -15,13 +15,14 @@ router.post("/" , async(req , res)=>{
        carton_size: Joi.number().required(),
        used : Joi.number(),
        date : Joi.string().required(),
-       price : Joi.number().required(),
+       south_price : Joi.number().required(),
        product_id : Joi.string().required(),
        product_size :Joi.string().required(),  
        product_color :Joi.string().required()  
 
     })
     try{
+        console.log("add" , data);
         let value = await schema.validateAsync(data);
         if(!value.error){
             console.log("product" , data);

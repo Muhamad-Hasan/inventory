@@ -1,0 +1,256 @@
+<!Doctype html>
+<html>
+<style>
+    .header{
+        background-color: #333;
+    }
+    .invoice-box {
+    height:500pt;
+     max-width: 800px;
+     margin: auto;
+     padding: 30px;
+     border: 1px solid #eee;
+     box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+     font-size: 7pt;
+     line-height: 10pt;
+     font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+     color: #555;
+ }
+ .invoice-box table {
+     width: 100%;
+     line-height: inherit;
+     text-align: left;
+ }
+ .invoice-box table td {
+     padding: 5px;
+     vertical-align: center;
+ }
+ .invoice-box table tr.top table td {
+     padding-bottom: 20px;
+ }
+ .invoice-box table tr.top table td.title {
+     font-size: 7pt;
+     line-height: 10pt;
+     color: #333;
+    
+ }
+ .invoice-box table tr.information table td {
+     padding-bottom: 40px;
+ }
+ .invoice-box table tr.heading td {
+     background: #eee;
+     border-bottom: 1px solid #ddd;
+     font-weight: bold;
+ }
+ .invoice-box table tr.details td {
+     padding-bottom: 20px;
+ }
+ .invoice-box table tr td{
+    text-align: right;
+}
+ .invoice-box table tr.item td {
+     border-bottom: 1px solid #eee;
+ }
+ .invoice-box table tr.item.last td {
+     border-bottom: none;
+ }
+ .invoice-box table tr.total td:nth-child(2) {
+     border-top: 2px solid #eee;
+     font-weight: bold;
+ }
+ .invoice-footer{
+   
+     position: relative;
+     top:100px
+ }
+ @media only screen and (max-width: 600px) {
+     .invoice-box table tr.top table td {
+         width: 100%;
+         display: block;
+         text-align: center;
+     }
+     .invoice-box table tr.information table td {
+         width: 100%;
+         display: block;
+         text-align: center;
+     }
+ }
+ </style>
+ 
+ <div class="invoice-box">
+     <table cellpadding="0" cellspacing="0">
+         <tr class="top">
+             <td colspan="10">
+                 <table>
+                     <tr >
+                       <center style="font-size: 70px;"> ICS</center>
+                     </tr>
+                 </table>
+             </td>
+         </tr>
+         <tr class="information " >
+        
+            <td colspan="10">
+                <table>
+                    <tr>
+                        <hr>
+                        
+                    <center>  
+                            <span><b><%= ejs_data.name %></b><br>
+                            <%= ejs_data.address %><br>
+                            Mobile No : <%= ejs_data.phone %></span>
+                    </center>
+                    </tr>
+                  
+                </table>
+            </td>
+        </tr>
+        
+         <tr class="information ">
+             <td colspan="10">
+                 <table>
+                     <tr>
+                       
+                         <td style="text-align: left;">
+                            Invoice No : <%= ejs_data.invoice_no %><br>
+                         </td>
+                        
+                         <td style="text-align: right;">
+                            Created Date : <%= ejs_data.date %><br>
+                            Due Date : <%= ejs_data.due_date %>
+                            
+                        </td>
+                     </tr>
+                 </table>
+             </td>
+         </tr>
+         <tr class="heading ">
+             <td>
+                 #
+             </td>
+             <td>
+                Qty
+            </td>
+            <td>
+                Details
+            </td>
+             <td style="text-align: center;">
+                 Product
+             </td>
+             <td>
+                TP
+            </td>
+            <td>
+                Scheme
+            </td>
+            <td>
+                Net TP
+            </td>
+            <td>
+                % Disc
+            </td>
+            <td>
+                Price
+            </td>
+            <td>
+                Amount
+            </td>
+            
+         </tr>
+         <% ejs_data.items.map((card , i) => { %>
+         <tr >
+            <td>
+                <%= i+1 %>
+            </td>
+            <td>
+                 <%= card.quantity %>
+             </td>
+             <td>
+               <%= card.ctns %> X <%= card.carton_size %>
+             </td>
+             <td  style="text-align: center;">
+                <%= card.name %>
+             </td>
+             <td>
+                <%= card.tp %>
+             </td>
+             <td>
+                <%= card.scheme %>
+             </td>
+             <td>
+                <%= card.net_tp.toFixed(2) %>
+             </td>
+             <td>
+                <%= card.disc %> %
+             </td>
+             <td>
+                <%= card.price.toFixed(2) %>
+             </td>
+             <td>
+                <%= card.amount.toFixed(2) %>
+             </td>
+         </tr>
+       
+        
+         
+     </tr>
+         <% }) %>
+
+     </table>
+     <div class="invoice-footer">
+        <table  style="position: relative ; width: 100%;">
+            
+            <tr>
+                <td>
+                  
+                </td>
+                <td>
+                  <b> Total Amount </b>:<%= ejs_data.total_amount %>       
+               </td>
+            </tr>
+            <% if(ejs_data.return_amount){ %>
+                <tr>
+                    <td>
+                      
+                    </td>
+                    <td>
+                      <b> Return Amount </b>:<%= ejs_data.return_amount %>       
+                   </td>
+                </tr>
+              <% } %>  
+             <tr style="margin-top: 50px;">
+                 <td style="text-align: left;">
+                <b>     Bilty No </b>: <%= ejs_data.bilty_no %>
+                 </td>
+                 <td>
+                   <b> Bilty Amount </b>:<%= ejs_data.bilty_amount %>       
+                </td>
+             </tr>
+             <tr>
+                <td style="text-align: left;">
+                    <b>No of cartons </b>: <%= ejs_data.ctns %>
+                </td>
+                <td>
+                 <b>  Grand Total </b>: <%= ejs_data.grand_total %>       
+               </td>
+            </tr>
+            <tr>
+              
+                <td style="text-align: left;">
+                   <b>Total Ledger Balance </b>: <%= (ejs_data.balance).toFixed(2) %>       
+               </td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: left;">
+                   <b> Note </b>: <%= ejs_data.note %>
+                </td>
+                
+            </tr>
+            
+         </table>
+       
+     </div>
+     
+ </div>
+ </html>

@@ -1,0 +1,176 @@
+<!Doctype html>
+<html>
+<style>
+    .header{
+        background-color: #333;
+    }
+    .invoice-box {
+     max-width: 800px;
+     margin: auto;
+     padding: 30px;
+     border: 1px solid #eee;
+     box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+     font-size: 7pt;
+     line-height: 24px;
+     font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+     color: #555;
+ }
+ .invoice-box table {
+     width: 100%;
+     line-height: inherit;
+     text-align: left;
+ }
+ .invoice-box table td {
+     padding: 5px;
+     vertical-align: center;
+ }
+
+ .invoice-box table tr.top table td {
+     padding-bottom: 20px;
+ }
+ .invoice-box table tr.top table td.title {
+     font-size: 7pt;
+     line-height: 45px;
+     color: #333;
+    
+ }
+ .invoice-box table tr.information table td {
+     padding-bottom: 40px;
+ }
+ .invoice-box table tr.heading td {
+     background: #eee;
+     border-bottom: 1px solid #ddd;
+     font-weight: bold;
+ }
+ .invoice-box table tr.details td {
+     padding-bottom: 20px;
+ }
+ .invoice-box table tr td{
+    text-align: center;
+}
+ .invoice-box table tr.item td {
+     border-bottom: 1px solid #eee;
+ }
+ .invoice-box table tr.item.last td {
+     border-bottom: none;
+ }
+ .invoice-box table tr.total td:nth-child(2) {
+     border-top: 2px solid #eee;
+     font-weight: bold;
+ }
+ .invoice-footer{
+   
+     position: relative;
+     top:100px
+ }
+ @media only screen and (max-width: 600px) {
+     .invoice-box table tr.top table td {
+         width: 100%;
+         display: block;
+         text-align: center;
+     }
+     .invoice-box table tr.information table td {
+         width: 100%;
+         display: block;
+         text-align: center;
+     }
+ }
+ </style>
+ 
+ <div class="invoice-box">
+     <table  cellpadding="0" cellspacing="0">
+         <tr class="top">
+             <td colspan="10">
+                 <table>
+                     <tr >
+                       <center style="font-size: 70px;"> ICS</center>
+                     </tr>
+                 </table>
+             </td>
+         </tr>
+     </table>
+         <table cellpadding="0" cellspacing="0">
+     
+         <tr  class="information " >
+        
+            <td colspan="10">
+                <table>
+                    <tr>
+                        <hr>
+                        
+                    <center>  
+                            <span  ><b><%= ejs_data.name %></b><br>
+                            <%= ejs_data.address %><br>
+                            Mobile No : <%= ejs_data.phone %></span><br>
+                            Created Date : <%=new Date().toLocaleDateString("en-GB") %>
+                    </center>
+                    </tr>
+                  
+                </table>
+            </td>
+        </tr>
+         </table>
+        
+        <table border="1" cellpadding="0" cellspacing="0">
+     
+         <tr class="heading ">
+             <td >
+                 S No
+             </td>
+             <td>
+                Date
+            </td>
+            <td>
+                Invoice No
+            </td>
+             <td style="text-align: center;">
+                 Description
+             </td>
+             <td>
+                Debit
+            </td>
+            <td>
+                Credit
+            </td>
+            <td>
+                Balance
+            </td>
+            
+         </tr>
+         <% ejs_data.data.map((card , i) => { %>
+         <tr >
+            <td>
+                <%= i+1 %>
+            </td>
+            <td>
+                 <%= new Date(card.date).toLocaleDateString("en-GB") %>
+             </td>
+             <td>
+               <%= card.invoice_no %> 
+             </td>
+             <td  style="text-align: center;">
+                <%= card.description %>
+             </td>
+             <td>
+                <%= card.debit.toFixed(2) %>
+             </td>
+             <td>
+                <%= card.credit.toFixed(2) %>
+             </td>
+             <td>
+                <%= card.balance.toFixed(2) %>
+             </td>
+             
+         </tr>
+       
+        
+         
+     </tr>
+         <% }) %>
+
+     </table>
+       
+     </div>
+     
+ </div>
+ </html>
