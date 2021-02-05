@@ -98,8 +98,8 @@ const FinalProduct = (props) => {
                                             </CCol>
                                             <CCol style={{fontSize:"12px" }}>
                                                 <p><i>P.Id :</i> {`${text.product_id}`}</p>
-                                                <p><i>South Price :</i> {`${text.south_price}`}</p>
-                                                <p><i>North Price :</i> {`${text.north_price}`}</p>
+                                                <p><i>Price :</i> {`${text.south_price}`}</p>
+                                                {/* <p><i>North Price :</i> {`${text.north_price}`}</p> */}
                                                 <p><i>Color :</i> {`${text.product_color}`}</p>
                                                 
                                             </CCol>

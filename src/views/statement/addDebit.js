@@ -49,15 +49,15 @@ const Statement = (props) => {
 
     const submit = async () => {
         try {
-            let data = await axios.post(`${baseURL}statement`, {
+            let data = await axios.post(`${baseURL}statement/debit`, {
                 c_id: selectUser,
                 description: description,
-                credit: parseInt(credit),
+                debit: parseInt(credit),
                 date: new Date(year , month-1 , currentDate)
             })
             if (data.status == 200) {
                 alert("Successfully Added");
-                props.history.goBack();
+                props.history.push('/statement/list');
 
             }
         } catch (err) {
@@ -130,7 +130,7 @@ const Statement = (props) => {
 
             <CCard xs="12" md="12" sm="12">
                 <CCardHeader>
-                    <center><b>Add Credit</b></center>
+                    <center><b>Add Debit</b></center>
                 </CCardHeader>
                 <CCardBody>
                     <CRow>
@@ -145,7 +145,7 @@ const Statement = (props) => {
                     <CRow>
                         <CCol xs="12">
                             <CFormGroup>
-                                <CLabel htmlFor="name">Credit</CLabel>
+                                <CLabel htmlFor="name">Debit</CLabel>
                                 <CInput id="name" placeholder="Enter Credit" required value={credit} onChange={(e) => setCredit(e.target.value)} />
                             </CFormGroup>
                         </CCol>

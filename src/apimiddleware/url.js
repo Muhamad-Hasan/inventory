@@ -1,4 +1,4 @@
-export const baseURL = "https://maclay.herokuapp.com/api/"
+export const baseURL = "http://localhost:8000/api/"
 // "https://maclay.herokuapp.com/api/";
 export const basePATH = "https://maclay.herokuapp.com/"
 

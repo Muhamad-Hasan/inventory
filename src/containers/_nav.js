@@ -18,21 +18,21 @@ export default [
         name: 'Add Product',
         to: '/inventory/product',
       },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Raw Material',
-        to: '/inventory/rawmaterial',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Finish Material',
-        to: '/inventory/finishmaterial',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Packaging Material',
-        to: '/inventory/packagingmaterial',
-      },
+      // {
+      //   _tag: 'CSidebarNavItem',
+      //   name: 'Raw Material',
+      //   to: '/inventory/rawmaterial',
+      // },
+      // {
+      //   _tag: 'CSidebarNavItem',
+      //   name: 'Finish Material',
+      //   to: '/inventory/finishmaterial',
+      // },
+      // {
+      //   _tag: 'CSidebarNavItem',
+      //   name: 'Packaging Material',
+      //   to: '/inventory/packagingmaterial',
+      // },
       {
         _tag: 'CSidebarNavItem',
         name: 'Finish Products',
@@ -89,6 +89,11 @@ export default [
         _tag: 'CSidebarNavItem',
         name: 'Create Credit',
         to: '/statement/create',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Create Debit',
+        to: '/statement/debit',
       },
       {
         _tag: 'CSidebarNavItem',

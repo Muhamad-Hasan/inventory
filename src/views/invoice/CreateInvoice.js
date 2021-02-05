@@ -109,7 +109,7 @@ const CreateInvoice = (props) => {
     const [fields] = useState(["product_id", "name", "product_size", "product_color","Carton size" , "quantity", "status", "show_details"])
 
     const select = (i , c_q) => {
-        console.log("log" , c_q , quantity);
+        console.log("log" ,i , c_q , quantity);
         if(quantity<1){
             alert("Quantity must be greater than 1")
             return
@@ -123,15 +123,41 @@ const CreateInvoice = (props) => {
             return
             
         }
-        product[i] = { ...product[i], quantity: parseFloat(quantity),discount : parseFloat(discount) ,q_type : type.toLowerCase() , region:region.toLowerCase() ,  selected: true, st, sq, sa };
-        setProduct(product)
-        console.log("p", product);
+        let all_products = []
+        product.forEach(p=>{
+            if(p._id == i){
+                all_products =  [...all_products ,{...p ,quantity: parseFloat(quantity),discount : parseFloat(discount) ,q_type : type.toLowerCase() , region:region.toLowerCase() ,  selected: true, st, sq, sa} ]
+            }else{
+                all_products  = [...all_products , p] 
+            }
+            
+        })
+       
+
+
+        // product[i] = { ...product[i], quantity: parseFloat(quantity),discount : parseFloat(discount) ,q_type : type.toLowerCase() , region:region.toLowerCase() ,  selected: true, st, sq, sa };
+        setProduct(all_products)
+        setQuantity();
+        setDiscount()
+        setType("large")
+        setRegion("South")
+        setST("")
+        setSQ()
+        setSA()
+        console.log("p", all_products);
         
     }
 
     const unselect = (i) => {
-        product[i] = { ...product[i], quantity: undefined, selected: false };
-        setProduct(product)
+        // product[i] = { ...product[i], quantity: undefined, selected: false };
+        let all_products = []
+        product.forEach(p=>{
+            if(p._id != i){
+                all_products =  [...all_products ,{...p ,quantity: undefined,selected :false } ]
+            }            
+        })
+        
+        setProduct(all_products)
         console.log("p", product);
     }
 
@@ -170,6 +196,9 @@ const CreateInvoice = (props) => {
             props.history.push("/invoice/list")
         } catch (err) {
             // alert(err.response)
+            if(err.response.status){
+                alert(err.response && err.response.data)
+            }
             console.log(err)
         }
 
@@ -215,6 +244,7 @@ const CreateInvoice = (props) => {
             newDetails = [...details, index]
         }
         setDetails(newDetails)
+        setQuantity(0)
     }
     return (
         <CContainer>
@@ -313,7 +343,8 @@ const CreateInvoice = (props) => {
                                                         <CDataTable
                                                             items={product}
                                                             fields={fields}
-                                                            columnFilter
+                                                            // columnFilter
+                                                            tableFilter
                                                             hover
                                                             sorter
                                                             scopedSlots={{
@@ -372,13 +403,13 @@ const CreateInvoice = (props) => {
                                                                                     {/* { !item.selected &&
                                                 <> */}
                                                                                     <CRow>
-                                                                                        <CCol xs="10">
+                                                                                        <CCol xs="12">
                                                                                             <CFormGroup>
                                                                                                 <CLabel htmlFor="ccnumber">Quantity</CLabel>
                                                                                                 <CInput disabled={item.selected} id="ccnumber" type="number" placeholder="Product Quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
                                                                                             </CFormGroup>
                                                                                         </CCol>
-                                                                                        <CCol style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px" }} xs="2">
+                                                                                        {/* <CCol style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px" }} xs="2">
                                                                                             <CDropdown >
                                                                                                 <CDropdownToggle color="info">
                                                                                                     {type}
@@ -388,16 +419,16 @@ const CreateInvoice = (props) => {
                                                                                                     <CDropdownItem onClick={() => setType("small")}>Small</CDropdownItem>
                                                                                                 </CDropdownMenu>
                                                                                             </CDropdown>
-                                                                                        </CCol>
+                                                                                        </CCol> */}
                                                                                     </CRow>
                                                                                     <CRow>
-                                                                                        <CCol xs="10">
+                                                                                        <CCol xs="12">
                                                                                             <CFormGroup>
                                                                                                 <CLabel htmlFor="ccnumber">Discount</CLabel>
                                                                                                 <CInput disabled={item.selected} id="ccnumber" type="number" placeholder="Discount in percent" value={discount} onChange={(e) => setDiscount(e.target.value)} />
                                                                                             </CFormGroup>
                                                                                         </CCol>
-                                                                                        <CCol style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px" }}  xs="2" lg="2">
+                                                                                        {/* <CCol style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px" }}  xs="2" lg="2">
                                                                                             <CDropdown >
                                                                                                 <CDropdownToggle color="info">
                                                                                                     {region}
@@ -407,7 +438,7 @@ const CreateInvoice = (props) => {
                                                                                                     <CDropdownItem onClick={() => setRegion("North")}>North</CDropdownItem>
                                                                                                 </CDropdownMenu>
                                                                                             </CDropdown>
-                                                                                        </CCol>
+                                                                                        </CCol> */}
                                                                                         
                                                                                     </CRow>
                                                                                     <CRow>
@@ -433,7 +464,7 @@ const CreateInvoice = (props) => {
                                                                                         </CCol>
                                                                                     </CRow>
                                                                                   
-                                                                                    <CRow>
+                                                                                    {/* <CRow>
                                                                                         <CCol xs="4">
                                                                                             <CFormGroup>
                                                                                                 <CLabel htmlFor="ccmonth">Scheme Quantity</CLabel>
@@ -454,15 +485,15 @@ const CreateInvoice = (props) => {
                                                                                                 <CInput type="number" disabled={item.selected} value={sa} onChange={(e) => setSA(e.target.value)} />
                                                                                             </CFormGroup>
                                                                                         </CCol>
-                                                                                    </CRow>
+                                                                                    </CRow> */}
                                                                                   
                                                                                     {
                                                                                         !item.selected ?
-                                                                                            <CButton onClick={() => select(index ,item.carton_size * item.stock )} size="sm" color="info">
+                                                                                            <CButton onClick={() => select(item._id ,item.carton_size * item.stock )} size="sm" color="info">
                                                                                                 Select
                                                                                                
                   </CButton>
-                                                                                            : <CButton size="sm" onClick={() => unselect(index)} color="danger" className="ml-1">
+                                                                                            : <CButton size="sm" onClick={() => unselect(item._id)} color="danger" className="ml-1">
                                                                                                 Unselect
                 </CButton>
                                                                                     }

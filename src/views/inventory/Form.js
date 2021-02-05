@@ -67,13 +67,15 @@ const Form = (props) => {
     const updateProduct =async()=>{
         let obj ={
             name  , 
-            quantity , 
+            stock :quantity , 
             description , 
             size , 
-            price , 
+            north_price ,
+            south_price : price, 
             total , 
             product_size , 
-            product_color
+            product_color,
+            carton_size:s_size
         }
         try{
             console.log("start" , all._id);
@@ -82,6 +84,7 @@ const Form = (props) => {
         console.log("data" , data);
         if(data.status == 200){
             alert("Succesfully Updated");
+            window.location.reload()
             // window.location ="#/inventory/rawmaterial"
         }
         }catch(err){
@@ -153,7 +156,7 @@ const Form = (props) => {
                             "S.NO" :i+1 < 10 ? `0${i+1}` : i+1,
                             "Date" : `${new Date(m.date).getDate()}/${new Date(m.date).getMonth()+1}/${new Date(m.date).getFullYear()}`,
                             "Quantity": `${m.quantity} x ${data.data.carton_size} = ${m.quantity * data.data.carton_size}`,
-                            "Cartons" : m.quantity,
+                            "Cartons" : m.quantity.toFixed(2),
                             "id" : m._id 
                         }]
                     }
@@ -240,7 +243,8 @@ const Form = (props) => {
                                                 
                                                         </CCol>    
                                                         <CCol style={{display:"flex" , justifyContent:"flex-end"}}>
-                                                       
+                                                        <CIcon onClick={()=>updateProduct()} style={{marginLeft:"10px" , cursor:"pointer"}} name="cil-save" />
+                                                        
                                                         <CIcon onClick={()=>deleteProduct()} style={{marginLeft:"10px" , cursor:"pointer"}} name="cil-trash" />
                                                         <CIcon onClick={()=>{props.history.push("/inventory/sales/"+_id)}} style={{marginLeft:"10px" , cursor:"pointer"}} name="cil-list" />
                                                         
@@ -293,13 +297,13 @@ const Form = (props) => {
                                                     <CRow>
                                                     <CCol xs="12">
                                                         <CFormGroup>
-                                                            <CLabel htmlFor="ccnumber">South Region Carton Size</CLabel>
+                                                            <CLabel htmlFor="ccnumber">Carton Size</CLabel>
                                                             <CInput type ="number" id="ccnumber" placeholder="Number of Items in Carton" required  value={s_size} onChange={(e)=> setSouthSize(e.target.value)} />
                                                         </CFormGroup>
                                                     </CCol>
                                                 </CRow>
                                                 }
-                                                {   page =="product" && 
+                                                {/* {   page =="product" && 
                                                     <CRow>
                                                     <CCol xs="12">
                                                         <CFormGroup>
@@ -308,14 +312,14 @@ const Form = (props) => {
                                                         </CFormGroup>
                                                     </CCol>
                                                 </CRow>
-                                                }
+                                                } */}
                                                 {
-                                                    quantity &&  
+                                                      page =="product"  &&  
                                                     <CRow>
                                                     <CCol xs="12">
                                                         <CFormGroup>
                                                             <CLabel htmlFor="ccnumber">Carton Quantity</CLabel>
-                                                            <CInput type="number" id="ccnumber" placeholder="Number Of Cartons" required  value={quantity && quantity.toFixed(2)} onChange={(e)=> setQuantity(e.target.value)}/>
+                                                            <CInput type="number" id="ccnumber" placeholder="Number Of Cartons" required  value={quantity && quantity} onChange={(e)=> setQuantity(e.target.value)}/>
                                                         </CFormGroup>
                                                     </CCol>
                                                 </CRow>
@@ -360,7 +364,7 @@ const Form = (props) => {
                                                     
                                                 }
                                                  {
-                                                    total && 
+                                                    page == "product" && 
                                                     <CRow>
                                                     <CCol xs="12">
                                                         <CFormGroup>
@@ -372,7 +376,7 @@ const Form = (props) => {
                                                     
                                                 }
                                                  {
-                                                    product_color && 
+                                                      page == "product" &&  
                                                     <CRow>
                                                     <CCol xs="12">
                                                         <CFormGroup>
@@ -384,7 +388,7 @@ const Form = (props) => {
                                                     
                                                 } 
                                                 {
-                                                    product_size && 
+                                                   page == "product" && 
                                                     <CRow>
                                                     <CCol xs="12">
                                                         <CFormGroup>

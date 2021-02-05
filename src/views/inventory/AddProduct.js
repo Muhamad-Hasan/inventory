@@ -143,7 +143,7 @@ const AddProduct = (props) => {
                 date: `${year}-${month}-${currentDate}`,
                 product_id : product_id,
                 south_price : price,
-                north_price : north_price,
+                // north_price : north_price,
                 product_size : product_size,
                 product_color : product_color
                 
@@ -177,30 +177,14 @@ const AddProduct = (props) => {
                         </CCardHeader>
                         <CCardBody>
                             <CTabs>
-                                <CNav variant="tabs">
+                                {/* <CNav variant="tabs">
                                     <CNavItem>
                                         <CNavLink>
-                                            <b>Raw Material</b>
                                         </CNavLink>
                                     </CNavItem>
-                                    <CNavItem>
-                                        <CNavLink>
-                                            <b>Raw Finish Product</b>
-                                        </CNavLink>
-                                    </CNavItem>
-                                    <CNavItem>
-                                        <CNavLink>
-                                            <b>Packaging Material</b>
-                                        </CNavLink>
-                                    </CNavItem>
-                                    <CNavItem>
-                                        <CNavLink>
-                                            <b>Finish Products</b>
-                                        </CNavLink>
-                                    </CNavItem>
-                                </CNav>
+                                </CNav> */}
                                 <CTabContent>
-                                    <CTabPane>
+                                    {/* <CTabPane>
 
                                         <CCard>
                                             <CCardHeader>
@@ -267,8 +251,8 @@ const AddProduct = (props) => {
 
 
 
-                                    </CTabPane>
-                                    <CTabPane>
+                                    </CTabPane> */}
+                                    {/* <CTabPane>
 
                                         <CCard>
                                             <CCardHeader>
@@ -324,8 +308,8 @@ const AddProduct = (props) => {
                                             </CCardBody>
                                         </CCard>
 
-                                    </CTabPane>
-                                    <CTabPane>
+                                    </CTabPane> */}
+                                    {/* <CTabPane>
                                         <CCard>
                                             <CCardHeader>
 
@@ -398,7 +382,7 @@ const AddProduct = (props) => {
 
 
 
-                                    </CTabPane>
+                                    </CTabPane> */}
                                     <CTabPane>
                                         <CCard>
                                             <CCardHeader>
@@ -458,19 +442,19 @@ const AddProduct = (props) => {
                                                 <CRow>
                                                     <CCol xs="12">
                                                         <CFormGroup>
-                                                            <CLabel htmlFor="name">South Region Price</CLabel>
+                                                            <CLabel htmlFor="name">Price</CLabel>
                                                             <CInput id="name" placeholder="Enter Price" required value={price} onChange={(e)=> setPrice(e.target.value)}/>
                                                         </CFormGroup>
                                                     </CCol>
                                                 </CRow>
-                                                <CRow>
+                                                {/* <CRow>
                                                     <CCol xs="12">
                                                         <CFormGroup>
                                                             <CLabel htmlFor="name">North Region Price</CLabel>
                                                             <CInput id="name" placeholder="Enter Price" required value={north_price} onChange={(e)=> setNorthPrice(e.target.value)}/>
                                                         </CFormGroup>
                                                     </CCol>
-                                                </CRow>
+                                                </CRow> */}
                                                 <CRow>
 
                                                     <CCol xs="12">

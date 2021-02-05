@@ -38,6 +38,7 @@ const List = (props) => {
     const [loading , setLoading] = useState(false)
 
 
+
     useEffect(() => {
         console.log("props", props);
         let id = false;
@@ -74,9 +75,11 @@ const List = (props) => {
         }
         customer();
 
+        return (()=>{
+            setLoading(false)
+        })
 
-
-    }, [search])
+    }, [search , loading])
 
     const pdf = async()=>{
         setLoading(true)
@@ -101,6 +104,22 @@ const List = (props) => {
 
     }
 
+    const deleteStatment = async(id)=>{
+        try{
+            let ask = prompt("Do You Want to Delete this Record" , "Yes");
+            if(ask == "Yes"){
+                let statement =await axios.delete(`${baseURL}statement/${id}`);
+                console.log("statement" , statement);
+                if(statement.status == 200){
+                    setLoading(true)
+                }
+                
+            }
+        }catch(err){
+
+        }
+    }
+
     return (
         <CContainer >
             <CCard style={{ padding: 0, margin: 0 }}>
@@ -123,7 +142,15 @@ const List = (props) => {
                             pagination
                             tableFilter
                             scopedSlots={{
-
+                                "Name":
+                                    (item)=>(
+                                        <td onDoubleClick={()=>{
+                                            deleteStatment(item.data._id)
+                                        }}>
+                                            {item.Name}
+                                        </td>
+                                        
+                                    ),
                                 "Description":
                                     (item) => (
                                         <td style={{ width: "20%" }}>

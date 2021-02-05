@@ -17,7 +17,7 @@ const statement = React.lazy(()=> import("./views/statement/StatementList"));
 const credit = React.lazy(()=> import("./views/statement/AddStatment"));
 const invoicView = React.lazy(()=> import("./views/invoice/invoice"));
 const sales = React.lazy(()=> import("./views/inventory/Sales"));
-
+const debit  = React.lazy(()=> import("./views/statement/addDebit"))
 
 
 
@@ -43,6 +43,7 @@ const routes = [
   { path: '/statement/list/:id', name:'Statements', component: statement },
   
   { path: '/statement/create', name:'Create credit', component: credit },
+  { path: '/statement/debit', name:'Create Debit', component: debit },
   
   
   
